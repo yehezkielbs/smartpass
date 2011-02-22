@@ -32,7 +32,7 @@ gem 'locksmith'
 #   gem 'webrat'
 # end
 
-group :test do
+group :development, :test do
     gem 'rspec-rails'
 end
 
