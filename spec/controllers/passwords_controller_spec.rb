@@ -21,7 +21,7 @@ describe PasswordsController do
 
     post('create', :password => password_parameters)
 
-    response.should render_template('new')
+    response.should render_template('create')
     assigns['password'].should == password
   end
 end

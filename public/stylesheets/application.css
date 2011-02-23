@@ -36,11 +36,11 @@ label.inline {
   margin-top: 12px;
 }
 
-.result {
+#result_container {
   margin-top: 10px;
 }
 
-.result p {
+#result_container p {
   margin: 2px 0 2px 0;
 }
 

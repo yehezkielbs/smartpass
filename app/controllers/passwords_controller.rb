@@ -6,6 +6,5 @@ class PasswordsController < ApplicationController
   def create
     @password = Password.new(params[:password])
     @password.generate_password if @password.valid?
-    render(:action => 'new')
   end
 end

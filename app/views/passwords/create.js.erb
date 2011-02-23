@@ -1,0 +1,2 @@
+$("#new_password_form_container").replaceWith("<%= escape_javascript(render(:partial => 'form')) %>");
+$("#result_container").html("<%= escape_javascript(render(:partial => 'generated_password')) %>")

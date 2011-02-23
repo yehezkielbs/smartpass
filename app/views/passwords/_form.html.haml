@@ -1,0 +1,21 @@
+#new_password_form_container.box
+  = form_for(@password, :remote => true) do |f|
+    = f.label :private_password
+    .error= error_for(@password, :private_password)
+    = f.password_field :private_password
+    = f.label :private_password_confirmation
+    = f.password_field :private_password_confirmation
+    = f.label :domain
+    .error= error_for(@password, :domain)
+    = f.text_field :domain
+    = f.label :username
+    = f.text_field :username
+    .row
+      = f.check_box :use_alphabet
+      = f.label :use_alphabet, 'Alphabet', :class => 'inline'
+      = f.check_box :use_number
+      = f.label :use_number, 'Number', :class => 'inline'
+      = f.check_box :use_symbol
+      = f.label :use_symbol, 'Symbol', :class => 'inline'
+    .error= error_for(@password, :use_alphabet)
+    .submit= f.submit 'Generate Password'
