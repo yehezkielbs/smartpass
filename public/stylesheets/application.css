@@ -65,3 +65,7 @@ form input[type="password"] {
   border-radius: 8px 8px 8px 8px;
   width: 346px;
 }
+
+.inline {
+  display: inline;
+}

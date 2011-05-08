@@ -11,6 +11,9 @@
     = f.label :username
     = f.text_field :username
     .row
+      = f.label :max_length, {:class => 'inline'}
+      = f.select :max_length, (1 .. 25), {:include_blank => 'No limit'}
+    .row
       = f.check_box :use_alphabet
       = f.label :use_alphabet, 'Alphabet', :class => 'inline'
       = f.check_box :use_number

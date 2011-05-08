@@ -7,6 +7,7 @@ describe Password do
       :private_password_confirmation => 'password 1',
       :domain => 'domain 1',
       :username => 'username 1',
+      :max_length => '20',
       :use_alphabet => '1',
       :use_number => '1',
       :use_symbol => '1'
@@ -25,6 +26,7 @@ describe Password do
     @password.use_alphabet.should == '1'
     @password.use_number.should == '1'
     @password.use_symbol.should == '1'
+    @password.max_length.should == '20'
   end
 
   it 'should not be persisted' do
@@ -66,12 +68,35 @@ describe Password do
       {
         :use_alphabet => true,
         :use_number => true,
-        :use_symbol => true
+        :use_symbol => true,
+        :max_length => 20
       }
     ).and_return(locksmith)
     locksmith.should_receive(:generated_password).and_return('the generated password')
     @password.generate_password
     @password.generated_password.should == 'the generated password'
+  end
+
+  it 'should not limit the length of generated password if max_length is 0' do
+    ['0', 0, nil, ''].each do |max_length_case|
+      @password.max_length = max_length_case
+
+      locksmith = mock(Locksmith)
+      Locksmith.should_receive(:new).with(
+        'password 1',
+        'domain 1',
+        'username 1',
+        {
+          :use_alphabet => true,
+          :use_number => true,
+          :use_symbol => true,
+          :max_length => nil
+        }
+      ).and_return(locksmith)
+      locksmith.should_receive(:generated_password).and_return('the generated password')
+      @password.generate_password
+      @password.generated_password.should == 'the generated password'
+    end
   end
 
   it 'should not generate password if not valid' do

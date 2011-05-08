@@ -11,7 +11,7 @@ class Password
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :private_password, :domain, :username, :use_alphabet, :use_number, :use_symbol
+  attr_accessor :private_password, :domain, :username, :use_alphabet, :use_number, :use_symbol, :max_length
   attr_reader :generated_password
 
   validates :domain, :presence => true
@@ -38,7 +38,8 @@ class Password
         {
           :use_alphabet => use_alphabet.to_i == 1,
           :use_number => use_number.to_i == 1,
-          :use_symbol => use_symbol.to_i == 1
+          :use_symbol => use_symbol.to_i == 1,
+          :max_length => max_length.to_i == 0 ? nil : max_length.to_i
         }
       )
       @generated_password = locksmith.generated_password
