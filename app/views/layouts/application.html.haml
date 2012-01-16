@@ -2,10 +2,26 @@
 %html
   %head
     %title Smart Password Generator
-    = stylesheet_link_tag('reset')
+    = stylesheet_link_tag('http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css')
     = stylesheet_link_tag('application')
     = javascript_include_tag('https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js')
     = javascript_include_tag('rails')
+    = javascript_include_tag('application')
     = csrf_meta_tag
   %body
-    = yield
+    .topbar
+      .fill
+        .container
+          %a.brand{:href => '/'} Smart password generator
+    .container
+      .hero-unit
+        = yield
+      .row
+        .span13
+          %p
+            %strong Smart Password Generator
+            will combine your secret password and the domain name to generate a strong password. This way, you can have
+            different password for different domain without the need to memorize all passwords. You just need to
+            remember one secret password.
+      %footer
+        %p SmartPass 2012

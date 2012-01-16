@@ -140,6 +140,7 @@ DEPENDENCIES
   launchy
   locksmith
   rails (= 3.0.4)
+  rake (= 0.8.7)
   rspec-rails
   spork
   sqlite3

@@ -6,9 +6,9 @@ Feature: Manage passwords
     When I fill in "Private password confirmation" with "private_password 1"
     And I fill in "Domain" with "domain 1"
     And I fill in "Username" with "username 1"
-    And I check "Alphabet"
-    And I check "Number"
-    And I check "Symbol"
+    And I check "Use alphabet"
+    And I check "Use number"
+    And I check "Use symbol"
     And I press "Generate Password"
     Then I should see /Pa14\&\%\"\+\^BU\-Z\-gfcqEVJ\]/
 
@@ -18,9 +18,9 @@ Feature: Manage passwords
     When I fill in "Private password confirmation" with "<Private password confirmation>"
     And I fill in "Domain" with "<Domain>"
     And I fill in "Username" with "<Username>"
-    And I <Alphabet action> "Alphabet"
-    And I <Number action> "Number"
-    And I <Symbol action> "Symbol"
+    And I <Alphabet action> "Use alphabet"
+    And I <Number action> "Use number"
+    And I <Symbol action> "Use symbol"
     And I press "Generate Password"
     Then I should see "<Expected text>"
   Examples:

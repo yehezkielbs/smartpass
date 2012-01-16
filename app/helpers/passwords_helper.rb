@@ -1,6 +1,6 @@
 module PasswordsHelper
   def error_for object, attribute
-    result = ''
+    result = nil
 
     errors = object.errors[attribute]
     if errors && errors.length > 0

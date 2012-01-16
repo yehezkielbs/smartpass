@@ -1,24 +1,56 @@
-#new_password_form_container.box
+#new_password_form_container
   = form_for(@password, :remote => true) do |f|
-    = f.label :private_password
-    .error= error_for(@password, :private_password)
-    = f.password_field :private_password
-    = f.label :private_password_confirmation
-    = f.password_field :private_password_confirmation
-    = f.label :domain
-    .error= error_for(@password, :domain)
-    = f.text_field :domain
-    = f.label :username
-    = f.text_field :username
-    .row
-      = f.label :max_length, {:class => 'inline'}
-      = f.select :max_length, (1 .. 25), {:include_blank => 'No limit'}
-    .row
-      = f.check_box :use_alphabet
-      = f.label :use_alphabet, 'Alphabet', :class => 'inline'
-      = f.check_box :use_number
-      = f.label :use_number, 'Number', :class => 'inline'
-      = f.check_box :use_symbol
-      = f.label :use_symbol, 'Symbol', :class => 'inline'
-    .error= error_for(@password, :use_alphabet)
-    .submit= f.submit 'Generate Password'
+    %fieldset
+      %legend Generate new password
+
+      - private_password_error = error_for(@password, :private_password)
+      .clearfix{:class => private_password_error ? 'error' : ''}
+        = f.label :private_password
+        .input
+          = f.password_field :private_password, :class => 'xlarge' + (private_password_error ? ' error' : '')
+          %span.help-inline= private_password_error || 'required'
+
+      .clearfix
+        = f.label :private_password_confirmation
+        .input
+          = f.password_field :private_password_confirmation
+          %span.help-inline required
+
+      - domain_error = error_for(@password, :domain)
+      .clearfix{:class => domain_error ? 'error' : ''}
+        = f.label :domain
+        .input
+          = f.text_field :domain, :class => 'xlarge' + (domain_error ? ' error' : '')
+          %span.help-inline= domain_error || 'required'
+
+      .clearfix
+        = f.label :username
+        .input
+          = f.text_field :username
+
+      .clearfix
+        = f.label :max_length
+        .input
+          = f.select :max_length, (1 .. 25), {:include_blank => 'No limit'}, {:class => 'medium'}
+
+      - use_alphabet_error = error_for(@password, :use_alphabet)
+      .clearfix{:class => use_alphabet_error ? 'error' : ''}
+        .input
+          %ul.inputs-list
+            %li
+              %label
+                = f.check_box :use_alphabet
+                %span.help-inline Use alphabets
+            %li
+              %label
+                = f.check_box :use_number
+                %span.help-inline Use numbers
+            %li
+              %label
+                = f.check_box :use_symbol
+                %span.help-inline Use symbols
+          - if use_alphabet_error
+            .help-inline= use_alphabet_error
+
+      .actions
+        = f.submit 'Generate Password', :class => 'btn primary'
